@@ -4,12 +4,6 @@ from django.db import models
 
 
 class Car(models.Model):
-    # id: number;
-    # name: string;
-    # make: string;
-    # model: string;
-    # year: string;
-
     name = models.TextField()
     make = models.TextField()
     model = models.TextField()
@@ -17,3 +11,18 @@ class Car(models.Model):
 
     def __str__(self) -> str:
         return f"{self.name}: {self.year} {self.make} {self.model}"
+
+
+class CarGasData(models.Model):
+    # fk's
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name="gas_data")
+
+    # attrs
+    miles_driven = models.FloatField()
+    gallons_used = models.FloatField()
+    mpg = models.FloatField()
+    cost = models.FloatField()
+    date = models.DateField()
+
+    def __str__(self) -> str:
+        return f"CarGasData<{self.car}, {self.date}>"

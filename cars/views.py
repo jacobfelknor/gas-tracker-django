@@ -3,7 +3,7 @@ from django.http.response import JsonResponse
 from rest_framework.views import APIView
 
 from .models import Car
-from .serializers import CarSerializer
+from .serializers import CarGasDataSerializer, CarSerializer
 
 # Create your views here.
 
@@ -17,4 +17,12 @@ class GetCars(APIView):
         serializer = CarSerializer(cars, many=True)
         data = serializer.data
         # serialized stuff here
+        return JsonResponse(data, safe=False)
+
+
+class GetCarGasData(APIView):
+    def get(self, request: HttpRequest, id: str) -> JsonResponse:
+        car_data = Car.objects.get(pk=id).gas_data.all()
+        serializer = CarGasDataSerializer(car_data, many=True)
+        data = serializer.data
         return JsonResponse(data, safe=False)
