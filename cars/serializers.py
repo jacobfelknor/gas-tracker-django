@@ -7,6 +7,10 @@ class CarSerializer(serializers.Serializer):
     make = serializers.CharField()
     model = serializers.CharField()
     year = serializers.CharField()
+    pprint = serializers.SerializerMethodField()
+
+    def get_pprint(self, object):
+        return str(object)
 
 
 class CarGasDataSerializer(serializers.Serializer):
