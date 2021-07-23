@@ -1,0 +1,3 @@
+#!/bin/bash
+#. .venv/bin/activate 
+uwsgi --socket gas-tracker.sock --module gas_tracker.wsgi --chmod-socket=666
