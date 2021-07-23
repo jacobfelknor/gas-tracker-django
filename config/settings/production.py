@@ -1,5 +1,6 @@
 from .local import *
+from .keys import ip_a
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["10.0.0.229"]
+ALLOWED_HOSTS = ["10.0.0.229", ip_a]
