@@ -1,4 +1,5 @@
 from dateutil import parser as dt_parser
+from django.core.exceptions import PermissionDenied
 
 from django.http.request import HttpRequest
 from django.http.response import JsonResponse
@@ -15,7 +16,7 @@ class GetCars(APIView):
         raise NotImplementedError
 
     def get(self, request: HttpRequest, user: str) -> JsonResponse:
-        cars = Car.objects.all()
+        cars = Car.objects.filter(user=user)
         serializer = CarSerializer(cars, many=True)
         data = serializer.data
         # serialized stuff here
@@ -24,6 +25,9 @@ class GetCars(APIView):
 
 class CarGasDataAPI(APIView):
     def get(self, request: HttpRequest, user: str, id: str) -> JsonResponse:
+        car = Car.objects.get(id=id)
+        if car.user != user:
+            raise PermissionDenied
         car_data = CarGasData.objects.filter(car_id=id).order_by("-date")
         serializer = CarGasDataSerializer(car_data, many=True)
         data = serializer.data
@@ -32,6 +36,8 @@ class CarGasDataAPI(APIView):
     def post(self, request: HttpRequest, user: str, id: str) -> JsonResponse:
         data: dict = request.data
         car = Car.objects.get(id=id)
+        if car.user != user:
+            raise PermissionDenied
         miles_driven = float(data.get("miles_driven"))
         gallons_used = float(data.get("gallons_used"))
         cost = float(data.get("cost"))

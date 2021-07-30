@@ -4,6 +4,7 @@ from django.db import models
 
 
 class Car(models.Model):
+    user = models.TextField()
     name = models.TextField()
     make = models.TextField()
     model = models.TextField()
@@ -18,6 +19,7 @@ class CarGasData(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name="gas_data")
 
     # attrs
+    # user = models.TextField()
     miles_driven = models.FloatField()
     gallons_used = models.FloatField()
     mpg = models.FloatField()
