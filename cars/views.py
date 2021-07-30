@@ -14,7 +14,7 @@ class GetCars(APIView):
     def post(self, request: HttpRequest) -> JsonResponse:
         raise NotImplementedError
 
-    def get(self, request: HttpRequest) -> JsonResponse:
+    def get(self, request: HttpRequest, user: str) -> JsonResponse:
         cars = Car.objects.all()
         serializer = CarSerializer(cars, many=True)
         data = serializer.data
@@ -23,13 +23,13 @@ class GetCars(APIView):
 
 
 class CarGasDataAPI(APIView):
-    def get(self, request: HttpRequest, id: str) -> JsonResponse:
+    def get(self, request: HttpRequest, user: str, id: str) -> JsonResponse:
         car_data = CarGasData.objects.filter(car_id=id).order_by("-date")
         serializer = CarGasDataSerializer(car_data, many=True)
         data = serializer.data
         return JsonResponse(data, safe=False)
 
-    def post(self, request: HttpRequest, id: str) -> JsonResponse:
+    def post(self, request: HttpRequest, user: str, id: str) -> JsonResponse:
         data: dict = request.data
         car = Car.objects.get(id=id)
         miles_driven = float(data.get("miles_driven"))
