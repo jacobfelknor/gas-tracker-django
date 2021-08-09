@@ -1,9 +1,10 @@
 from cars.models import Car, CarGasData
 from dateutil import parser as dt_parser
 from django.core.management.base import BaseCommand
+from config.settings.keys import me
 
 FILENAME = "./cars/management/commands/subData.txt"
-CAR = Car.objects.get(name="Subaru")
+CAR = Car.objects.get(name="Subaru", user=me)
 
 
 def chunks(l, n):
