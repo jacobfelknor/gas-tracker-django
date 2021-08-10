@@ -3,4 +3,4 @@ from .local import *  # noqa
 
 DEBUG = False
 
-AiLLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["gas-tracker-django-env.eba-imuhdfyi.us-west-2.elasticbeanstalk.com"]
