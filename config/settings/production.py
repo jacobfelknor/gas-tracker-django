@@ -1,6 +1,7 @@
 from .local import *  # noqa
-#from .keys import ip_a
+
+# from .keys import ip_a
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["mygastracker.com"]
+ALLOWED_HOSTS = ["gastrackerapi.com"]
