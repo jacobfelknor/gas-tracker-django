@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
+from django.views.generic.base import RedirectView
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
+    path("", RedirectView.as_view(url="admin/", permanent=False), name="index"),
     path("admin/", admin.site.urls),
     path("cars/", include("cars.urls", namespace="cars")),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
