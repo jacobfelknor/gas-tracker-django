@@ -1,0 +1,13 @@
+1. Write an db_export management function that outputs data in same format as legacy gas tracker
+
+2. Get mysql working on my machine
+
+3. Test my export import logic with new mysql logic
+
+4. If it works, create an RDS mysql free tier db and give it a public IP
+
+5. Run my export/import again, this time pointing to the RDS db. Ensure it worked
+
+6. If it works, make permanent changes to Django db settings to point to RDS for production
+    - CHANGE database from publicly available to private only
+    - use the private endpoint in my production settings
