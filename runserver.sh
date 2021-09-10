@@ -2,7 +2,7 @@
 
 # this is a script to start a locally hosted test server for a given site using WSL
 
-my_ip=`ifconfig | awk 'FNR == 11 {print $2}'`
+my_ip=`ifconfig | awk 'FNR == 34 {print $2}'`
 errormsg="Unknown or invalid options. See below\n --port=<port_number>  (If unspecified, defaults to 8000)"
 if [ $# -gt 1 ]
 then
