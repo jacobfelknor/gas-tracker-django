@@ -1,10 +1,10 @@
 from cars.models import Car, CarGasData
 from dateutil import parser as dt_parser
 from django.core.management.base import BaseCommand
-from config.settings.keys import me
+from config.settings.utils import get_parameters_aws
 
 FILENAME = "./cars/management/commands/subData.txt"
-CAR = Car.objects.get(name="Subaru", user=me)
+CAR = Car.objects.get(name="Subaru", user=get_parameters_aws("my_gas_tracker_userid"))
 
 
 def chunks(l, n):
