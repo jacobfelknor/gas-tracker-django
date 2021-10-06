@@ -4,7 +4,7 @@ from .local import *  # noqa
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["gastrackerapi.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["api.mygastracker.com", "127.0.0.1"]
 
 DATABASES = {
     "default": {
