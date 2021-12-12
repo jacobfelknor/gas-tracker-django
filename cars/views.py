@@ -23,6 +23,21 @@ class GetCars(APIView):
         return JsonResponse(data, safe=False)
 
 
+class AddCar(APIView):
+    def post(self, request: HttpRequest, user: str) -> JsonResponse:
+        data: dict = request.data
+        name = data.get("name")
+        make = data.get("make")
+        model = data.get("model")
+        year = int(data.get("year"))
+        new_car = Car(user=user, name=name, make=make, model=model, year=year)
+        new_car.save()
+        return JsonResponse(CarSerializer(new_car).data)
+
+    def get(self, request: HttpRequest) -> JsonResponse:
+        raise NotImplementedError
+
+
 class CarGasDataAPI(APIView):
     def get(self, request: HttpRequest, user: str, id: str) -> JsonResponse:
         car = Car.objects.get(id=id)
