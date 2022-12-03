@@ -27,7 +27,7 @@ SECRET_KEY = get_parameters_aws("gastrackerdjango_secretkey")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "10.0.0.173"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
